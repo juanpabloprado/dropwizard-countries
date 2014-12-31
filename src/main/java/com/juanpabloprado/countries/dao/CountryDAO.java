@@ -12,9 +12,8 @@ import java.util.List;
  */
 public interface CountryDAO {
 
-    @GetGeneratedKeys
     @SqlUpdate("insert into country (code, name) values ( :code, :name)")
-    int createCountry(@BindBean Country country);
+    void createCountry(@BindBean Country country);
 
     @Mapper(CountryMapper.class)
     @SqlQuery("select code, name from country")

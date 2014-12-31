@@ -16,22 +16,17 @@ public class ErrorRepresentation {
     @NotBlank
     @Length(min = 2, max = 255)
     private final String message;
-    @NotBlank
-    @Length(min = 2, max = 255)
-    private final String developerMessage;
 
-    public ErrorRepresentation(int status, String property, String message, String developerMessage) {
+    public ErrorRepresentation(int status, String property, String message) {
         this.status = status;
         this.property = property;
         this.message = message;
-        this.developerMessage = developerMessage;
     }
 
     public ErrorRepresentation() {
         status = 0;
         property = null;
         message = null;
-        developerMessage = null;
     }
 
     public int getStatus() {
@@ -44,9 +39,5 @@ public class ErrorRepresentation {
 
     public String getMessage() {
         return message;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
     }
 }

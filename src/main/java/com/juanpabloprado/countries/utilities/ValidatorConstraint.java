@@ -21,8 +21,7 @@ public class ValidatorConstraint {
 
             for (ConstraintViolation<Object> violation : violations) {
                 validationMessages.add(
-                        new ErrorRepresentation(Response.Status.CONFLICT.getStatusCode(), violation.getPropertyPath().toString(), violation.getMessage(),
-                                violation.getMessage())
+                        new ErrorRepresentation(Response.Status.CONFLICT.getStatusCode(), violation.getPropertyPath().toString(), violation.getPropertyPath().toString() + ": " + violation.getMessage())
                        );
 
             }

@@ -36,7 +36,7 @@ public class App extends Application<CountriesConfiguration>
         configureCors(environment);
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
-        environment.jersey().register(new CountryResource(jdbi));
+        environment.jersey().register(new CountryResource(jdbi, environment.getValidator()));
 
         // Authenticator, with caching support (CachingAuthenticator)
         CachingAuthenticator<BasicCredentials, Boolean> authenticator = new CachingAuthenticator<BasicCredentials, Boolean>(

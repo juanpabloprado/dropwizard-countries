@@ -15,10 +15,17 @@ public interface CountryDAO {
     @SqlUpdate("insert into country (code, name) values ( :code, :name)")
     void createCountry(@BindBean Country country);
 
+    @SqlUpdate("update country set code = :code, name = :name where code = :id")
+    void updateCountry(@Bind("id") String code, @BindBean Country country);
+
+    @SqlUpdate("delete from country where code = :code")
+    void deleteCountry(@Bind("code") String code);
+
     @Mapper(CountryMapper.class)
     @SqlQuery("select code, name from country")
     List<Country> getCountries();
 
-    @SqlQuery("select count(*) from country where code = :code")
-    int getCountry(@Bind("code") String code);
+    @Mapper(CountryMapper.class)
+    @SqlQuery("select * from country where code = :code")
+    Country getCountry(@Bind("code") String code);
 }

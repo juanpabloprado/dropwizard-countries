@@ -1,16 +1,21 @@
 package com.juanpabloprado.countries;
 
 import com.google.common.cache.CacheBuilderSpec;
+import com.juanpabloprado.countries.resources.ClientResource;
 import com.juanpabloprado.countries.resources.CountryResource;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import io.dropwizard.Application;
 import io.dropwizard.auth.CachingAuthenticator;
 import io.dropwizard.auth.basic.BasicAuthProvider;
 import io.dropwizard.auth.basic.BasicCredentials;
+import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.views.ViewBundle;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.skife.jdbi.v2.DBI;
 
@@ -36,6 +41,7 @@ public class App extends Application<CountriesConfiguration>
                 return configuration.getDataSourceFactory();
             }
         });
+        bootstrap.addBundle(new ViewBundle());
     }
 
     @Override
@@ -44,6 +50,11 @@ public class App extends Application<CountriesConfiguration>
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
         environment.jersey().register(new CountryResource(jdbi, environment.getValidator()));
+
+        // build the client and add the resource to the environment
+        final Client client = new JerseyClientBuilder(environment).build("REST Client");
+        client.addFilter(new HTTPBasicAuthFilter("wsuser", "wspassword"));
+        environment.jersey().register(new ClientResource(client));
 
         // Authenticator, with caching support (CachingAuthenticator)
         CachingAuthenticator<BasicCredentials, Boolean> authenticator = new CachingAuthenticator<BasicCredentials, Boolean>(

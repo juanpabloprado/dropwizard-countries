@@ -1,6 +1,7 @@
 package com.juanpabloprado.countries.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.juanpabloprado.countries.dao.CountryDAO;
 import com.juanpabloprado.countries.representations.Country;
@@ -19,7 +20,9 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Juan on 12/18/2014.

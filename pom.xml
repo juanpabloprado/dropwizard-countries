@@ -56,6 +56,11 @@
             <artifactId>dropwizard-assets</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.hubspot.jackson</groupId>
+            <artifactId>jackson-jaxrs-propertyfiltering</artifactId>
+            <version>0.6.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

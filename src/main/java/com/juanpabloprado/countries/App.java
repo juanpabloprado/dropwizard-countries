@@ -1,6 +1,7 @@
 package com.juanpabloprado.countries;
 
 import com.google.common.cache.CacheBuilderSpec;
+import com.hubspot.jackson.jaxrs.PropertyFilteringMessageBodyWriter;
 import com.juanpabloprado.countries.resources.ClientResource;
 import com.juanpabloprado.countries.resources.CountryResource;
 import com.sun.jersey.api.client.Client;
@@ -47,6 +48,8 @@ public class App extends Application<CountriesConfiguration>
     @Override
     public void run(CountriesConfiguration configuration, Environment environment) throws Exception {
         configureCors(environment);
+        environment.jersey().register(new PropertyFilteringMessageBodyWriter());
+
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
         environment.jersey().register(new CountryResource(jdbi, environment.getValidator()));

@@ -1,8 +1,8 @@
 package com.juanpabloprado.countries.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
+import com.hubspot.jackson.jaxrs.PropertyFiltering;
 import com.juanpabloprado.countries.dao.CountryDAO;
 import com.juanpabloprado.countries.representations.Country;
 import com.juanpabloprado.countries.utilities.ErrorRepresentation;
@@ -20,9 +20,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Juan on 12/18/2014.
@@ -48,6 +46,7 @@ public class CountryResource {
 
     @GET
     @Path("/{code}")
+    @PropertyFiltering
     public Response getCountry(@PathParam("code") String code, @Auth Boolean isAuthenticated) {
         Country country = countryDAO.getCountry(code);
         return Response.ok(country).build();

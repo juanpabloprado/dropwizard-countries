@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class Country {
 
+    public static final String TAG = Country.class.getSimpleName();
+
     @NotBlank
     @Length(min = 1, max = 3)
     private final String code;

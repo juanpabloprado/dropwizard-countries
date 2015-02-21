@@ -2,6 +2,7 @@ package com.juanpabloprado.countries;
 
 import com.google.common.cache.CacheBuilderSpec;
 import com.hubspot.jackson.jaxrs.PropertyFilteringMessageBodyWriter;
+import com.juanpabloprado.countries.auth.CountriesAuthenticator;
 import com.juanpabloprado.countries.resources.ClientResource;
 import com.juanpabloprado.countries.resources.CountryResource;
 import com.sun.jersey.api.client.Client;

@@ -1,4 +1,4 @@
-package com.juanpabloprado.countries;
+package com.juanpabloprado.countries.auth;
 
 import com.google.common.base.Optional;
 import com.juanpabloprado.countries.dao.UserDAO;

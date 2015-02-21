@@ -1,6 +1,7 @@
 package com.juanpabloprado.countries.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.base.Optional;
 import com.hubspot.jackson.jaxrs.PropertyFiltering;
 import com.juanpabloprado.countries.dao.CountryDAO;
 import com.juanpabloprado.countries.representations.Country;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @Path("/v1/countries")
 @Produces(MediaType.APPLICATION_JSON)
-public class CountryResource {
+public class CountryResource extends GenericResource<Country> {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryResource.class);
 
     private final CountryDAO countryDAO;
@@ -42,7 +43,8 @@ public class CountryResource {
     @Path("/{code}")
     @PropertyFiltering
     public Response getCountry(@PathParam("code") String code, @Auth Boolean isAuthenticated) {
-        Country country = countryDAO.getCountry(code);
+        Optional<Country> countryOptional = countryDAO.getCountry(code);
+        Country country = findSafely(countryOptional, Country.TAG);
         return Response.ok(country).build();
     }
 

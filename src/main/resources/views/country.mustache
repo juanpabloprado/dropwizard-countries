@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta charset="UTF-8" />
     <title>Country</title>
     <link rel="stylesheet" href="/css/normalize.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
@@ -19,10 +20,12 @@
     </tr>
     </tfoot>
     <tbody>
+    {{#countries}}
     <tr>
-        <th scope="row">{{country.code}}</th>
-        <td>{{country.name}}</td>
+        <th scope="row">{{code}}</th>
+        <td>{{name}}</td>
     </tr>
+    {{/countries}}
     </tbody>
 </table>
 </body>

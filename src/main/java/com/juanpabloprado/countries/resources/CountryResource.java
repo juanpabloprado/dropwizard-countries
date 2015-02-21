@@ -1,26 +1,21 @@
 package com.juanpabloprado.countries.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.common.base.Optional;
 import com.hubspot.jackson.jaxrs.PropertyFiltering;
 import com.juanpabloprado.countries.dao.CountryDAO;
 import com.juanpabloprado.countries.representations.Country;
-import com.juanpabloprado.countries.utilities.ErrorRepresentation;
 import com.juanpabloprado.countries.utilities.LoggerJsonObject;
-import com.juanpabloprado.countries.utilities.ValidatorConstraint;
 import io.dropwizard.auth.Auth;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

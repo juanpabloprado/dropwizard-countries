@@ -13,6 +13,7 @@ import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.Valid;
 import javax.validation.Validator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -31,11 +32,9 @@ public class CountryResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryResource.class);
 
     private final CountryDAO countryDAO;
-    private final Validator validator;
 
-    public CountryResource(DBI jdbi, Validator validator) {
+    public CountryResource(DBI jdbi) {
         countryDAO = jdbi.onDemand(CountryDAO.class);
-        this.validator = validator;
     }
 
     @GET
@@ -53,13 +52,8 @@ public class CountryResource {
     }
 
     @POST
-    public Response createCountry(Country country, @Auth Boolean isAuthenticated) throws JsonProcessingException, URISyntaxException {
+    public Response createCountry(@Valid Country country, @Auth Boolean isAuthenticated) throws JsonProcessingException, URISyntaxException {
         LoggerJsonObject.logObject(country, LOGGER);
-        Optional<ArrayList<ErrorRepresentation>> validate = ValidatorConstraint.validate(country, validator);
-        if(validate.isPresent()){
-            LoggerJsonObject.logObject(validate.get(), LOGGER);
-            return Response.status(Response.Status.CONFLICT).entity(validate.get()).build();
-        }
         countryDAO.createCountry(country);
         return Response.created(new URI(country.getCode())).entity(country).build();
     }
@@ -73,13 +67,8 @@ public class CountryResource {
 
     @PUT
     @Path("/{code}")
-    public Response updateContact(@PathParam("code") String code, Country country, @Auth Boolean isAuthenticated) throws JsonProcessingException {
+    public Response updateContact(@PathParam("code") String code,@Valid Country country, @Auth Boolean isAuthenticated) throws JsonProcessingException {
         LoggerJsonObject.logObject(country, LOGGER);
-        Optional<ArrayList<ErrorRepresentation>> validate = ValidatorConstraint.validate(country, validator);
-        if(validate.isPresent()){
-            LoggerJsonObject.logObject(validate.get(), LOGGER);
-            return Response.status(Response.Status.CONFLICT).entity(validate.get()).build();
-        }
         countryDAO.updateCountry(code, country);
         return Response.ok(country).build();
     }

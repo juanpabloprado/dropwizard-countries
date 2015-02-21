@@ -58,7 +58,7 @@ public class App extends Application<CountriesConfiguration>
 
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
-        environment.jersey().register(new CountryResource(jdbi, environment.getValidator()));
+        environment.jersey().register(new CountryResource(jdbi));
 
         // build the client and add the resource to the environment
         final Client client = new JerseyClientBuilder(environment).build("REST Client");

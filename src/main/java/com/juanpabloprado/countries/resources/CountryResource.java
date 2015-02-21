@@ -65,7 +65,7 @@ public class CountryResource {
         return Response.noContent().build();
     }
 
-    @PUT
+    @POST
     @Path("/{code}")
     public Response updateContact(@PathParam("code") String code,@Valid Country country, @Auth Boolean isAuthenticated) throws JsonProcessingException {
         LoggerJsonObject.logObject(country, LOGGER);

@@ -38,8 +38,6 @@ public class App extends Application<CountriesConfiguration>
     @Override
     public void initialize(Bootstrap<CountriesConfiguration> bootstrap) {
         bootstrap.addBundle(new AssetsBundle("/assets/css", "/css", null, "css"));
-        bootstrap.addBundle(new AssetsBundle("/assets/js", "/js", null, "js"));
-        bootstrap.addBundle(new AssetsBundle("/assets/fonts", "/fonts", null, "fonts"));
 
         bootstrap.addBundle(new MigrationsBundle<CountriesConfiguration>() {
             @Override

@@ -2,17 +2,28 @@
 <head>
     <title>Country</title>
     <link rel="stylesheet" href="/css/normalize.css"/>
-    <link rel="stylesheet" href="/css/foundation.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
-<table border="1">
+<table>
+    <caption>Countries</caption>
+    <thead>
     <tr>
-        <th colspan="2">Country ({{country.code}})</th>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
     </tr>
+    </thead>
+    <tfoot>
     <tr>
-        <td>Name</td>
+        <td colspan="3">Built with all the love in the world by <a href="http://juanpabloprado.com/" target="_blank">Juan Pablo Prado</a></td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+        <th scope="row">{{country.code}}</th>
         <td>{{country.name}}</td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>

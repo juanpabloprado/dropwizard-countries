@@ -7,6 +7,7 @@ import com.juanpabloprado.countries.resources.CountryResource;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.auth.CachingAuthenticator;
 import io.dropwizard.auth.basic.BasicAuthProvider;
 import io.dropwizard.auth.basic.BasicCredentials;
@@ -36,6 +37,10 @@ public class App extends Application<CountriesConfiguration>
 
     @Override
     public void initialize(Bootstrap<CountriesConfiguration> bootstrap) {
+        bootstrap.addBundle(new AssetsBundle("/assets/css", "/css", null, "css"));
+        bootstrap.addBundle(new AssetsBundle("/assets/js", "/js", null, "js"));
+        bootstrap.addBundle(new AssetsBundle("/assets/fonts", "/fonts", null, "fonts"));
+
         bootstrap.addBundle(new MigrationsBundle<CountriesConfiguration>() {
             @Override
             public DataSourceFactory getDataSourceFactory(CountriesConfiguration configuration) {
@@ -43,6 +48,7 @@ public class App extends Application<CountriesConfiguration>
             }
         });
         bootstrap.addBundle(new ViewBundle());
+
     }
 
     @Override

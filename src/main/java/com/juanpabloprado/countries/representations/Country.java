@@ -1,11 +1,14 @@
 package com.juanpabloprado.countries.representations;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.hubspot.rosetta.annotations.RosettaNaming;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by Juan on 12/18/2014.
  */
+@RosettaNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class Country {
 
     public static final String TAG = Country.class.getSimpleName();

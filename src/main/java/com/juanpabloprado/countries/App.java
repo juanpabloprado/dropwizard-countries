@@ -2,6 +2,7 @@ package com.juanpabloprado.countries;
 
 import com.google.common.cache.CacheBuilderSpec;
 import com.hubspot.jackson.jaxrs.PropertyFilteringMessageBodyWriter;
+import com.hubspot.rosetta.jdbi.RosettaMapperFactory;
 import com.juanpabloprado.countries.auth.CountriesAuthenticator;
 import com.juanpabloprado.countries.resources.ClientResource;
 import com.juanpabloprado.countries.resources.CountryResource;
@@ -57,6 +58,8 @@ public class App extends Application<CountriesConfiguration>
 
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
+        jdbi.registerMapper(new RosettaMapperFactory());
+
         environment.jersey().register(new CountryResource(jdbi));
 
         // build the client and add the resource to the environment

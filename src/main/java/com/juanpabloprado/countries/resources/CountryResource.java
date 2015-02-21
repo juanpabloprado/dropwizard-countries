@@ -5,7 +5,7 @@ import com.google.common.base.Optional;
 import com.hubspot.jackson.jaxrs.PropertyFiltering;
 import com.juanpabloprado.countries.dao.CountryDAO;
 import com.juanpabloprado.countries.representations.Country;
-import com.juanpabloprado.countries.utilities.LoggerJsonObject;
+import com.juanpabloprado.countries.util.LoggerJsonObject;
 import io.dropwizard.auth.Auth;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;

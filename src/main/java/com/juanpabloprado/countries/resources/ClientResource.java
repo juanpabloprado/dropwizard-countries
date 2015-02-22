@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by Juan on 2/16/2015.
  */
+@Path("/client")
 @Produces(MediaType.TEXT_HTML)
-@Path("/v1/client/")
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClientResource {
 
@@ -24,7 +24,7 @@ public class ClientResource {
     }
 
     @GET
-    @Path("showCountry")
+    @Path("/showCountry")
     public CountryView showCountry(@DefaultValue("MEX") @QueryParam("code") String code) throws JsonProcessingException {
         WebResource contactResource = client.resource("http://localhost:8080/v1/countries/" + code);
         Country c = contactResource.get(Country.class);
@@ -32,7 +32,7 @@ public class ClientResource {
     }
 
     @GET
-    @Path("showCountries")
+    @Path("/showCountries")
     public CountryView showCountries() throws JsonProcessingException {
         WebResource contactResource = client.resource("http://localhost:8080/v1/countries/");
         List<Country> c = contactResource.get(new GenericType<List<Country>>() {});

@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Juan on 12/18/2014.
  */
-@Path("/countries")
+@Path("/v1/countries")
 @Produces(MediaType.APPLICATION_JSON)
 public class CountryResource extends GenericResource<Country> {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryResource.class);

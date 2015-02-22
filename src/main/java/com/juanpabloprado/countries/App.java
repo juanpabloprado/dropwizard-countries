@@ -53,6 +53,7 @@ public class App extends Application<CountriesConfiguration>
 
     @Override
     public void run(CountriesConfiguration configuration, Environment environment) throws Exception {
+        // TODO: Add applicationContextPath: /v1
         configureCors(environment);
         environment.jersey().register(new PropertyFilteringMessageBodyWriter());
 

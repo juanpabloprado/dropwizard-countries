@@ -6,6 +6,8 @@ import com.hubspot.jackson.jaxrs.PropertyFiltering;
 import com.juanpabloprado.countries.dao.CountryDAO;
 import com.juanpabloprado.countries.representations.Country;
 import com.juanpabloprado.countries.util.LoggerJsonObject;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import io.dropwizard.auth.Auth;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @Path("/v1/countries")
 @Produces(MediaType.APPLICATION_JSON)
+@Api("/countries")
 public class CountryResource extends GenericResource<Country> {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryResource.class);
 
@@ -34,6 +37,7 @@ public class CountryResource extends GenericResource<Country> {
     }
 
     @GET
+    @ApiOperation("Sample endpoint")
     public Response getCountries(@Auth Boolean isAuthenticated){
         List<Country> countries = countryDAO.getCountries();
         return Response.ok(countries).build();

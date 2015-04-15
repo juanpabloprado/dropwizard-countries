@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Path("/v1/countries")
 @Produces(MediaType.APPLICATION_JSON)
-@Api("/countries")
+@Api("/v1/countries")
 public class CountryResource extends GenericResource<Country> {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryResource.class);
 

@@ -39,11 +39,6 @@
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-migrations</artifactId>
-            <version>${dropwizard.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-client</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>
@@ -72,6 +67,11 @@
             <artifactId>swagger-jaxrs_2.10</artifactId>
             <scope>compile</scope>
             <version>${dep.swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.modules</groupId>
+            <artifactId>dropwizard-flyway</artifactId>
+            <version>0.8.0-2</version>
         </dependency>
     </dependencies>
     <build>

@@ -1,0 +1,5 @@
+CREATE TABLE country (
+	code VARCHAR (3) NOT NULL,
+	name VARCHAR (255) NOT NULL,
+	PRIMARY KEY (code)
+)

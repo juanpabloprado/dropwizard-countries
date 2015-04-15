@@ -24,8 +24,8 @@ import io.dropwizard.auth.basic.BasicAuthProvider;
 import io.dropwizard.auth.basic.BasicCredentials;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.flyway.FlywayBundle;
 import io.dropwizard.jdbi.DBIFactory;
-import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
@@ -50,14 +50,12 @@ public class App extends Application<CountriesConfiguration>
     public void initialize(Bootstrap<CountriesConfiguration> bootstrap) {
         bootstrap.addBundle(new AssetsBundle("/assets/css", "/css", null, "css"));
 
-        bootstrap.addBundle(new MigrationsBundle<CountriesConfiguration>() {
-            @Override
+        bootstrap.addBundle(new FlywayBundle<CountriesConfiguration>() {
             public DataSourceFactory getDataSourceFactory(CountriesConfiguration configuration) {
                 return configuration.getDataSourceFactory();
             }
         });
         bootstrap.addBundle(new ViewBundle());
-
     }
 
     @Override
